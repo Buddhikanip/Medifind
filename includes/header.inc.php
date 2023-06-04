@@ -7,7 +7,7 @@
     <title>Document</title>
 
     
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../style.css" />
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <!-- <link href="https://fontawesome.com/icons/shelves?f=classic&s=solid" rel="stylesheet" /> -->
@@ -52,7 +52,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand" href="#">
-        <img src="images/MediFine_Logo1.png" height="25" alt="Medifine Logo"
+        <img src="../images/MediFine_Logo1.png" height="25" alt="Medifine Logo"
           loading="lazy" />
       </a>
       

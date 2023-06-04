@@ -36,10 +36,10 @@
                 </div>
                 <!-- <div class="col-lg-1 col-xl-2"></div> -->
                 <div class="col-10 col-sm-10 col-md-10 col-lg-6 col-xl-5 order-2 order-lg-2 mt-5">
-                  <form action="includes/login.inc.php" method="post">
+                  <form action="../includes/signin.inc.php" method="post">
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                      <input type="text" name="emailOrLicenceNo" class="form-control form-control-lg" required />
+                      <input type="text" name="uid" class="form-control form-control-lg" required />
                       <label class="form-label">Email / Pharmacy Licence Number</label>
                     </div>
 
@@ -53,12 +53,26 @@
                       <!-- Checkbox -->
                       <div class="form-check mb-0">
                         <input class="form-check-input me-2" type="checkbox" value="" />
-                        <label class="form-check-label" for="form2Example3">
+                        <label class="form-check-label"\>
                           Remember me
                         </label>
                       </div>
                       <a href="#!" class="text-body">Forgot password?</a>
                     </div>
+
+                    <?php
+                      if(isset($_GET["error"]))
+                      {
+                        if($_GET["error"] =="wrongUserName")
+                        {
+                            echo '<div class="alert alert-danger">Enter a valid Username</div>';
+                        }
+                        else if($_GET["error"] =="wrongPassword")
+                        {
+                            echo '<div class="alert alert-danger">Enter valid password</div>';
+                        }
+                      }
+                    ?>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
                       <button type="submit" name="submit" class="btn btn-primary btn-lg"

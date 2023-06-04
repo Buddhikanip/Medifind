@@ -1,9 +1,9 @@
 <?php
-    include_once 'includes/header.inc.php';
+    include_once '../includes/header.inc.php';
 ?>
 
     <div class="container pt-5 ps-4">
-        <button class='btn btn-primary float-end me-5'>Add new drug</button>
+        <a class='btn btn-primary float-end me-5' href='addnew.php'>Add new drug</a>
         <h3>Inventory</h3>
 
         <table class="table table-hover text-center text-nowrap mt-5">
@@ -41,5 +41,5 @@
     </div>
     
 <?php
-    include_once 'includes/footer.inc.php';
+    include_once '../includes/footer.inc.php';
 ?>
