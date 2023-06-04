@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MediFine - Sign Up</title>
+  <title>Pharmacy Sign Up</title>
   <link rel="icon" href="../images/MediFine_Logo_Plain.png">
 
   <!-- Font Awesome -->
@@ -36,7 +36,7 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-prescription-bottle-medical fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" name="name" class="form-control" />
+                        <input type="text" name="name" class="form-control" required />
                         <label class="form-label" for="p_name">Pharmacy Name</label>
                       </div>
                     </div>
@@ -44,7 +44,7 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="email" name="email" class="form-control" />
+                        <input type="email" name="email" class="form-control" required />
                         <label class="form-label" for="email">Email</label>
                       </div>
                     </div>
@@ -52,7 +52,7 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-location-dot fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" name="address" class="form-control" />
+                        <input type="text" name="address" class="form-control" required />
                         <label class="form-label" for="address">Address</label>
                       </div>
                     </div>
@@ -60,7 +60,7 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-phone fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" name="phoneNo" class="form-control" />
+                        <input type="text" name="phoneNo" class="form-control" required />
                         <label class="form-label" for="tel">Phone Number</label>
                       </div>
                     </div>
@@ -68,7 +68,7 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-hashtag fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" name="licenceNo" class="form-control" />
+                        <input type="text" name="licenceNo" class="form-control" required />
                         <label class="form-label" for="p_l_number">Pharmacy Licence Number</label>
                       </div>
                     </div>
@@ -76,7 +76,7 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="password" name="pwd" class="form-control" />
+                        <input type="password" name="pwd" class="form-control" required />
                         <label class="form-label" for="p_word">Password</label>
                       </div>
                     </div>
@@ -84,16 +84,16 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="password" name="pwdRepeat"  class="form-control" />
+                        <input type="password" name="pwdRepeat"  class="form-control" required />
                         <label class="form-label" for="c_p_word">Confirm Password</label>
                       </div>
                     </div>
 
                     <div class="form-check d-flex justify-content-center mb-5">
-                      <input class="form-check-input me-2" type="checkbox" value="" />
+                      <input class="form-check-input me-2" type="checkbox" value="" required />
                       <label class="form-check-label" for="agree">
                         I agree all statements in
-                        <a href="terms.html">Terms of service</a>
+                        <a href="terms.html">Terms of service</a> and <a href="">Privacy Policy</a>
                       </label>
                     </div>
 
@@ -108,7 +108,7 @@
                   </form>
                 </div>
                 <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 d-flex align-items-center order-1 order-lg-2"></div>
-                <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 d-flex align-items-center order-1 order-lg-2">
+                <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 d-flex align-items-center order-1 order-lg-2 mb-5">
                   <img src="../images/MediFineLogo2.png" class="img-fluid img-responsive" alt="Logo" width="400" />
                 </div>
               </div>
