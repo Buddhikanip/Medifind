@@ -91,7 +91,7 @@
 
                     <div class="form-check d-flex justify-content-center mb-5">
                       <input class="form-check-input me-2" type="checkbox" value="" required />
-                      <label class="form-check-label" for="agree">
+                      <label class="form-check-label small" for="agree">
                         I agree all statements in
                         <a href="terms.html">Terms of service</a> and <a href="">Privacy Policy</a>
                       </label>
@@ -111,6 +111,9 @@
                 <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 d-flex align-items-center order-1 order-lg-2 mb-5">
                   <img src="../images/MediFineLogo2.png" class="img-fluid img-responsive" alt="Logo" width="400" />
                 </div>
+              </div>          
+              <div class="d-flex justify-content-center small fw-bold ">
+                Already have an account? &nbsp; <a href="signup.php" class="link-primary"> Sign in</a>
               </div>
             </div>
           </div>
