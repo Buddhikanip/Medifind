@@ -80,3 +80,24 @@ createUser($conn,$pname,$email,$address,$tel,$plicense,$pwd,$status)
     header("Location:../pharmacy/signin.php?error=none");
     exit();
 }
+
+function loginAdmin($username,$pwd)
+{
+    if($username !== "admin")
+    {
+        header("Location:../admin/signin.php?error=wrongUserName");
+        exit();
+    }
+    if($pwd !== "admin123")
+    {
+        header("Location:../admin/signin.php?error=wrongPassword");
+        exit();
+    }
+    else if($pwd === "admin123")
+    {
+        session_start();
+        $_SESSION["userfname"] = 'Admin';
+        header("Location:../admin/index.php");
+        exit();
+    }
+}
