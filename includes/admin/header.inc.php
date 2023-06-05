@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,4 +57,4 @@
 <!--Main Navigation-->
 
 <!--Main layout-->
-<main>
+<div style="margin-top: 58px;">
