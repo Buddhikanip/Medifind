@@ -40,7 +40,7 @@
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                       <input type="text" name="uid" class="form-control form-control-lg" required />
-                      <label class="form-label">Email / Pharmacy Licence Number</label>
+                      <label class="form-label">Username</label>
                     </div>
 
                     <!-- Password input -->
@@ -75,7 +75,7 @@
                     ?>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
-                      <button type="submit" name="pharmacy" class="btn btn-primary btn-lg"
+                      <button type="submit" name="admin" class="btn btn-primary btn-lg"
                         style="padding-left: 2.5rem; padding-right: 2.5rem">
                         Login
                       </button>
