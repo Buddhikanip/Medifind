@@ -2,6 +2,17 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    background: url(../images/caring2.jpg);
+    -webkit-background-size: cover;
+    
+}
+
+body::before{
+    content: ' ';
+}
+
+body::after{
+    background-color: white;
 }
 
 nav{
@@ -17,7 +28,11 @@ nav{
     padding: 10px 90px;
     box-sizing: border-box;
     /* background: rgba(0,0,0,0.6); */
-    border-bottom: 2px solid black;
+    /* border-bottom: 2px solid black; */
+    /* box-shadow:0px 3px 20px 1px rgba(22, 18, 247, 0.942); */
+    box-shadow: rgb(142, 142, 170) 0px 7px 29px 0px;
+    backdrop-filter: blur(8px);
+    background-color: rgba(179, 179, 188, 0.357);
 }
 
 nav .logo{
@@ -52,7 +67,8 @@ nav .logo{
 
 img {
     padding-bottom: 3%;
-    height: 25px;
+    height: 29px;
+    width: 150px;
     
 }
 
@@ -67,9 +83,14 @@ img {
 .style2 ul{ 
     list-style-type: none;
     margin: 0%;
-    padding-top: 50px;
+    padding-top: 30px;
+    padding-left: 0;
     width: 14%;
     border-right: 2px solid rgb(0, 0, 0);
+    border-color: rgb(140, 144, 156);
+    /* box-shadow: rgb(0, 0, 255) 0px 7px 29px 0px;
+    backdrop-filter: blur(8px);
+    background-color: rgb(189, 189, 233);     */
     /* background-color: aquamarine; */
     height: 100%;
     position: fixed;
@@ -84,11 +105,60 @@ img {
     /* border-radius: 1px;
     border-color: black;
     border-width: 17%; */
-    border: 2px solid black;
-    border-radius: 1px;
+    /* border-top: 2px solid black;
+    border-bottom: 2px solid black; */
     border-width: 20%;
+    margin-bottom: 7px;
+    text-align: center;
 }
 
 .style2 li:hover{ 
     background-color:rgb(176, 172, 172);
 }
+
+.topic {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 35px;
+    font-weight: bold;
+    padding-left: 18%;
+    padding-top: 120px;
+}
+
+.button1{
+    position: absolute;
+    border-radius: 6px;
+    color: rgb(9, 0, 0);
+    padding:5px 10px 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    right: 35px;
+    top: 205px;
+    background-color: rgb(165, 156, 156);
+}
+
+#drugs {
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    color: white;
+    width: 75%;
+    left: 300px;
+    border-collapse: collapse;
+}
+
+#drugs th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: rgb(131, 131, 131);
+    border: 1px solid white;
+    padding: 8px;
+}
+
+
+/* .button1{
+    padding-right: 10px;
+} */
