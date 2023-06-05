@@ -36,7 +36,7 @@
                 </div>
                 <!-- <div class="col-lg-1 col-xl-2"></div> -->
                 <div class="col-10 col-sm-10 col-md-10 col-lg-6 col-xl-5 order-2 order-lg-2 mt-5">
-                  <form action="../includes/signin.inc.php" method="post">
+                  <form action="../includes/admin/signin.inc.php" method="post">
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                       <input type="text" name="uid" class="form-control form-control-lg" required />

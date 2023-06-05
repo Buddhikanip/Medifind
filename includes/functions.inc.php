@@ -65,9 +65,10 @@ function pwdMatch($pwd,$pwdr)
     return $result;
 }
 
-createUser($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$status)
+function createUser($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$status)
 {
-    $sql = "INSERT INTO temp_phamacy (pname,oname,email,address,tel,plicense,pwd,status) VALUES (?,?,?,?,?,?,?,?);";
+    echo "Hi 1";
+        $sql = "INSERT INTO temp_phamacy (pname,oname,email,address,tel,plicense,pwd,status) VALUES (?,?,?,?,?,?,?,?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt,$sql)){
         header("Location:../pharmacy/signup.php?error=stmtfailed");
@@ -79,25 +80,26 @@ createUser($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$status)
     mysqli_stmt_close($stmt);
     header("Location:../pharmacy/signin.php?error=none");
     exit();
+
 }
 
 function loginAdmin($username,$pwd)
 {
     if($username !== "admin")
     {
-        header("Location:../admin/signin.php?error=wrongUserName");
+        header("Location:../../admin/signin.php?error=wrongUserName");
         exit();
     }
     if($pwd !== "admin123")
     {
-        header("Location:../admin/signin.php?error=wrongPassword");
+        header("Location:../../admin/signin.php?error=wrongPassword");
         exit();
     }
     else if($pwd === "admin123")
     {
         session_start();
         $_SESSION["userfname"] = 'Admin';
-        header("Location:../admin/index.php");
+        header("Location:../../admin/index.php");
         exit();
     }
 }
