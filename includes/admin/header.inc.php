@@ -45,7 +45,7 @@ session_start();
       <!-- Right links -->
         <ul class="navbar-nav ms-auto me-5 d-flex flex-row">
             <li class="nav-item">
-                <a class="nav-link" href="../admin/includes/signout.inc.php"><button type="button" class="btn btn-primary btn-sm"> LogOut </button></a>
+                <a class="nav-link" href="../includes/admin/signout.inc.php"><button type="button" class="btn btn-primary btn-sm"> LogOut </button></a>
             </li>
         </ul>
       
