@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     }
 
     $id = $_GET["id"];
-    $sql = "SELECT * FROM phamacy WHERE id=$id";
+    $sql = "SELECT * FROM temp_phamacy WHERE id=$id";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 
@@ -19,26 +19,27 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         exit();
     }
 
-    $pname= $_GET["pname"];
-    $oname= $_GET["oname"];
-    $email = $_GET["email"];
-    $address = $_GET["address"];
-    $tel = $_GET["tel"];
-    $plicense = $_GET["plicense"];
-    $pwd = $_GET["pwd"];
-    $status = $_GET["status"];
+    $pname= $row["pname"];
+    $oname= $row["oname"];
+    $email = $row["email"];
+    $address = $row["address"];
+    $tel = $row["tel"];
+    $plicense = $row["plicense"];
+    $pwd = $row["pwd"];
+    $status = $row["status"];
 }
 else
 {
     header("Location: index.php");
     exit();
 }
-if(isset($_SESSION["userfname"]))
+if(isset($_SESSION["userfname"]) === "Admin")
 {
 ?>
 
 <div class="container p-5">
-                <form class="mx-1 mx-md-4" method="post">
+  <h3 class='pb-4'>Edit page - <?php echo $row['pname']?></h3>
+                <form class="mx-1 mx-md-4" action="../includes/admin/verify.inc.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
 
                     <div class="d-flex flex-row align-items-center mb-4">
@@ -91,30 +92,46 @@ if(isset($_SESSION["userfname"]))
 
                     <input type="hidden" name="pwd" value="<?php echo $pwd; ?>">
 
-                    <?php
-                    if($status == "1")
-                    {
-                        echo "<div class=\"form-check\">
-                            <input class=\"form-check-input\" type=\"radio\" name=\"status\" checked/>
-                            <label class=\"form-check-label\" for=\"status\"> Verified </label>
-                        </div>
-                      
-                        <div class=\"form-check\">
-                            <input class=\"form-check-input\" type=\"radio\" name=\"status\"/>
-                            <label class=\"form-check-label\" for=\"status\">  Not Verified </label>
-                        </div>";
-                    }else {
-                        echo "<div class=\"form-check\">
-                            <input class=\"form-check-input\" type=\"radio\" name=\"status\"/>
-                            <label class=\"form-check-label\" for=\"status\"> Verified </label>
-                        </div>
-                      
-                        <div class=\"form-check\">
-                            <input class=\"form-check-input\" type=\"radio\" name=\"status\" checked/>
-                            <label class=\"form-check-label\" for=\"status\">  Not Verified </label>
-                        </div>";
-                    }
-                    ?>
+                    <div class="ps-5">
+                      <?php
+                      if($status == "1")
+                      {
+                          echo "<div class=\"form-check\">
+                              <input class=\"form-check-input\" type=\"radio\" name=\"status\" checked/>
+                              <label class=\"form-check-label\" for=\"status\"> Verified </label>
+                          </div>
+                        
+                          <div class=\"form-check\">
+                              <input class=\"form-check-input\" type=\"radio\" name=\"status\"/>
+                              <label class=\"form-check-label\" for=\"status\">  Not Verified </label>
+                          </div>";
+                      }else {
+                          echo "<div class=\"form-check\">
+                              <input class=\"form-check-input\" type=\"radio\" name=\"status\"/>
+                              <label class=\"form-check-label\" for=\"status\"> Verified </label>
+                          </div>
+                        
+                          <div class=\"form-check\">
+                              <input class=\"form-check-input\" type=\"radio\" name=\"status\" checked/>
+                              <label class=\"form-check-label\" for=\"status\">  Not Verified </label>
+                          </div>";
+                      }
+                      ?>
+                    </div>
+
+                      <?php
+                          if(isset($_GET["error"]))
+                          {
+                              if($_GET["error"] =="stmtfailed")
+                              {
+                                  echo '<div class="alert alert-danger">Somethig went wrong !</div>';
+                              }
+                              else if($_GET["error"] =="none")
+                              {
+                                  echo '<div class="alert alert-success">Pharmacy verified succesfully !</div>';
+                              }
+                          }
+                      ?>
 
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <button type="submit" name="submit" class="btn btn-primary btn-lg">

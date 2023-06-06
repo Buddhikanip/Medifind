@@ -1,12 +1,15 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Header</title>
+    <title><?php echo $title ?></title>
     
-    <link rel="icon" href="../../images/MediFine_Logo_Plain.png">
+    <link rel="icon" href="../images/MediFine_Logo_Plain.png">
 
     
   <link rel="stylesheet" href="../style.css" />
@@ -31,11 +34,11 @@
   <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+        <a href="index.php" class="list-group-item list-group-item-action py-2 ripple <?php if($title !=='profile') echo "active" ?> aria-current="true">
           <i class="fas fa-warehouse fa-fw me-3"></i><span>Inventory</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+        <a href="profile.php" class="list-group-item list-group-item-action py-2 ripple <?php if($title =='profile') echo "active" ?> ">
           <i class="fas fa-user fa-fw me-3"></i><span>Profile</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+        <a href="../includes/signout.inc.php" class="list-group-item list-group-item-action py-2 ripple">
             <i class="fas fa-right-from-bracket fa-fw me-3"></i><span>Logout</span></a>        
       </div>
     </div>
@@ -60,9 +63,9 @@
       
 
       <!-- Right links -->
-        <ul class="navbar-nav ms-auto me-5 d-flex flex-row">
+        <ul class="navbar-nav collapse ms-auto me-5 d-flex flex-row">
             <li class="nav-item">
-                <a class="nav-link text-dark">Pharmacy Name</a>
+                <a class="nav-link text-dark"><?php if(isset($_SESSION["pname"])){ echo $_SESSION["pname"];}?></a>
             </li>
         </ul>
       

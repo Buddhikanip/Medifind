@@ -1,8 +1,35 @@
 <?php
-    $title = 'Add New Drug';
+    $title = 'Update Drug';
     include_once '../includes/header.inc.php';
+    include_once '../includes/dbh.inc.php';
 
-if(isset($_SESSION["pname"]))
+    if($_SERVER['REQUEST_METHOD'] == 'GET'){
+    
+        if(!isset($_GET["id"])){
+            header("location: index.php");
+            exit;
+        }
+    
+        $id = $_GET["id"];
+        $sql = "SELECT * FROM inventory WHERE id=$id";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+    
+        if(!$row){
+            header("location: update.php?error=stmtfailed");
+            exit;
+        }
+    
+        $id = $row["id"];
+        $dname = $row["dname"];
+        $manu = $row["manu"];
+        $sup = $row["sup"];
+        $ndc = $row["ndc"];
+        $exp = $row["exp"];
+        $qty = $row["qty"];
+        $uprice = $row["uprice"];
+    }
+    if(isset($_SESSION["pname"]))
 {
 ?>
 
@@ -12,17 +39,19 @@ if(isset($_SESSION["pname"]))
         <p class="mb-0">
             <a href="index.php" class="text-reset"><u>Inventory</u></a>
             <span>/</span>
-            <a href="addnew.php" class="text-reset">Add new drug</a>
+            <a href="addnew.php" class="text-reset">Update drug</a>
         </p>
         </nav>
         <!-- Breadcrumb -->
 
         <form action="../includes/addnew.inc.php" method="post" class="p-5">
+            
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
             <!-- Gutter g-5 -->
             <div class="row g-5 mb-5">
                 <div class="col-md-6">
                     <select class="form-select form-control form-control-lg" name='dname'>
-                        <option selected>Select Drug Name</option>
+                        <option selected><?php echo $row['dname']?></option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
@@ -31,7 +60,7 @@ if(isset($_SESSION["pname"]))
                 <div class="col-md-6">
                     <!-- manufacture -->
                     <div class="form-outline">
-                        <input type="text" name='manu' class="form-control form-control-lg" required/>
+                        <input type="text" name='manu' class="form-control form-control-lg" value="<?php echo $row['manu']?>" required/>
                         <label class="form-label" >Manufacture Name</label>
                     </div>
                 </div>
@@ -40,14 +69,14 @@ if(isset($_SESSION["pname"]))
                 <div class="col-md-6">
                     <!-- supplier input -->
                     <div class="form-outline">
-                        <input type="text" name='sup' class="form-control form-control-lg" required/>
+                        <input type="text" name='sup' class="form-control form-control-lg" value="<?php echo $row['sup']?>" required/>
                         <label class="form-label" >Supplier</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <!-- NDC input -->
                     <div class="form-outline">
-                        <input type="text" name='ndc' class="form-control form-control-lg" required/>
+                        <input type="text" name='ndc' class="form-control form-control-lg" value="<?php echo $row['ndc']?>" required/>
                         <label class="form-label" >NDC (National Drug Code)</label>
                     </div>
                 </div>
@@ -56,14 +85,14 @@ if(isset($_SESSION["pname"]))
                 <div class="col-md-6">
                     <!-- date input -->
                     <div class="form-outline">
-                        <input type="date" name='exp' class="form-control form-control-lg" required/>
+                        <input type="date" name='exp' class="form-control form-control-lg" value="<?php echo $row['exp']?>" required/>
                         <label class="form-label" >Select Expiration date</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <!-- NDC input -->
                     <div class="form-outline">
-                        <input type="text" name='qty' class="form-control form-control-lg" required/>
+                        <input type="text" name='qty' class="form-control form-control-lg" value="<?php echo $row['qty']?>" required/>
                         <label class="form-label" >Quantity on hand</label>
                     </div>
                 </div>
@@ -72,7 +101,7 @@ if(isset($_SESSION["pname"]))
                 <div class="col-md-6">
                     <!-- date input -->
                     <div class="form-outline">
-                        <input type="text" name='uprice' class="form-control form-control-lg" required/>
+                        <input type="text" name='uprice' class="form-control form-control-lg" value="<?php echo $row['uprice']?>" required/>
                         <label class="form-label" >Unit price</label>
                     </div>
                 </div>
@@ -93,15 +122,11 @@ if(isset($_SESSION["pname"]))
                     {
                         echo '<div class="alert alert-danger">Please select a drug !</div>';
                     }
-                    else if($_GET["error"] =="qty")
-                    {
-                        echo '<div class="alert alert-danger">Please enter valid datatype to \'Quantity on hand\' !</div>';
-                    }
                 }
             ?>
 
             <!-- Submit button -->
-            <button name="submit" type="submit" class="btn btn-primary btn-block">Add Drug</button>
+            <button name="update" type="submit" class="btn btn-primary btn-block">Update Drug</button>
         </form>
 
     </div>

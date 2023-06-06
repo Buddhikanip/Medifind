@@ -2,7 +2,7 @@
 include_once '../includes/admin/header.inc.php';
 include_once '../includes/dbh.inc.php';
 
-if(isset($_SESSION["userfname"]))
+if(isset($_SESSION["userfname"]) === "Admin")
 {
 ?>
 
@@ -45,7 +45,7 @@ if(isset($_SESSION["userfname"]))
                             ?>
                                 </td>
                                 <td>
-                                <?php echo "<a href=<?php echo 'verify.php?id=$row[id]'><i class='fa-solid fa-pen'></i></a> &nbsp; &nbsp; &nbsp;
+                                <?php echo "<a href='verify.php?id=$row[id]'><i class='fa-solid fa-pen'></i></a> &nbsp; &nbsp; &nbsp;
                                     <a href='../includes/admin/phamdel.inc.php?id=$row[id]' onclick=\"return confirm('Are you sure you want to delete this pharmacy ?')\"><i class=\"fa-solid fa-trash-can\"></i></a>"?>
                                 </td>
                             </tr>
