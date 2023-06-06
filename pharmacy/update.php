@@ -20,7 +20,6 @@
             exit;
         }
     
-        $id = $row["id"];
         $dname = $row["dname"];
         $manu = $row["manu"];
         $sup = $row["sup"];
@@ -39,7 +38,7 @@
         <p class="mb-0">
             <a href="index.php" class="text-reset"><u>Inventory</u></a>
             <span>/</span>
-            <a href="addnew.php" class="text-reset">Update drug</a>
+            <a href="update.php" class="text-reset">Update drug</a>
         </p>
         </nav>
         <!-- Breadcrumb -->
@@ -130,6 +129,7 @@
         </form>
 
     </div>
+    <script src="js/sweetalert.min.js"></script>
     
 <?php
     include_once '../includes/footer.inc.php';

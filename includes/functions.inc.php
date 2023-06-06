@@ -65,16 +65,16 @@ function pwdMatch($pwd,$pwdr)
     return $result;
 }
 
-function createUser($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$status)
+function createUser($conn,$pname,$email,$address,$tel,$plicense,$pwd,$status)
 {
-    $sql = "INSERT INTO temp_phamacy (pname,oname,email,address,tel,plicense,pwd,status) VALUES (?,?,?,?,?,?,?,?);";
+    $sql = "INSERT INTO temp_phamacy (pname,email,address,tel,plicense,pwd,status) VALUES (?,?,?,?,?,?,?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt,$sql)){
         header("Location:../pharmacy/signup.php?error=stmtfailed");
         exit();
     }
     $hashedPwd = password_hash($pwd,PASSWORD_DEFAULT);
-    mysqli_stmt_bind_param($stmt,"ssssssss",$pname,$oname,$email,$address,$tel,$plicense,$hashedPwd,$status);
+    mysqli_stmt_bind_param($stmt,"sssssss",$pname,$email,$address,$tel,$plicense,$hashedPwd,$status);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("Location:../pharmacy/index.php?error=none");
@@ -97,7 +97,7 @@ function loginAdmin($username,$pwd)
     else if($pwd === "admin123")
     {
         session_start();
-        $_SESSION["userfname"] = 'Admin';
+        $_SESSION["uname"] = 'Admin';
         header("Location:../../admin/index.php");
         exit();
     }

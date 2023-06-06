@@ -2,7 +2,7 @@
 include_once '../includes/admin/header.inc.php';
 include_once '../includes/dbh.inc.php';
 
-if(isset($_SESSION["userfname"]) === "Admin")
+if(isset($_SESSION["uname"]) == "Admin")
 {
 ?>
 

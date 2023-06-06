@@ -21,7 +21,7 @@ if(isset($_POST["submit"]))
         header('Location:../pharmacy/addnew.php?error=qty');
     }
 
-    // addnew($conn,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice);
+    addnew($conn,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice);
 }
 else if(isset($_POST["update"]))
 {
@@ -43,6 +43,17 @@ else if(isset($_POST["update"]))
     }
 
     update($conn,$id,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice);
+}
+else if(isset($_POST['profile']))
+{
+    $id = $_POST['id'];
+    $dname = $_POST['dname'];
+    $manu = $_POST['manu'];
+    $sup = $_POST['sup'];
+    $ndc = $_POST['ndc'];
+    $exp = $_POST['exp'];
+    $qty = $_POST['qty'];
+    $uprice = $_POST['uprice'];
 }
 else{
     header('Location:../phamacy/addnew.php');

@@ -2,7 +2,6 @@
 if(isset($_POST["submit"]))
 {
     $pname= $_POST["pname"];
-    $oname= $_POST["oname"];
     $email = $_POST["email"];
     $address = $_POST["address"];
     $tel = $_POST["tel"];
@@ -34,7 +33,7 @@ if(isset($_POST["submit"]))
         exit();
     }
 
-    createUser($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$status);
+    createUser($conn,$pname,$email,$address,$tel,$plicense,$pwd,$status);
     
 }
 else{
