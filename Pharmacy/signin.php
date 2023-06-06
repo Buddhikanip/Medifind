@@ -71,6 +71,10 @@
                         {
                             echo '<div class="alert alert-danger">Enter valid password</div>';
                         }
+                        else if($_GET["error"] =="none")
+                        {
+                            echo '<div class="alert alert-success">Account created successfully Please signin now !</div>';
+                        }
                       }
                     ?>
 

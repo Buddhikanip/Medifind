@@ -10,6 +10,6 @@ if(isset($_POST["pharmacy"]))
     loginUser($conn,$username,$pwd);
 }
 else{
-    header('Location:../login.php');
+    header('Location:../pharmacy/signin.php');
     exit();
 }

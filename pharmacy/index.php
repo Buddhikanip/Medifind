@@ -1,5 +1,10 @@
 <?php
+    $title = 'Pharmacy';
     include_once '../includes/header.inc.php';
+    include_once '../includes/dbh.inc.php';
+
+if(isset($_SESSION["pname"]))
+{
 ?>
 
     <div class="container pt-5 ps-4">
@@ -21,20 +26,31 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Value</td>
-                    <td>18,492</td>
-                    <td>228</td>
-                    <td>350</td>
-                    <td>$4,787.64</td>
-                    <td>228</td>
-                    <td>350</td>
-                    <td>$4,787.64</td>
-                    <td>
-                        <a href="#"><i class="fa-solid fa-trash-can"></i></a> &nbsp; &nbsp; &nbsp;
-                        <a href="#"><i class="fa-solid fa-pen"></i></a>
-                    </td>
-                </tr>
+            <?php
+                $sql = "SELECT * FROM inventory ORDER BY id DESC";
+                $result = mysqli_query($conn, $sql);
+
+                if (mysqli_num_rows($result) > 0){
+                    while ($row = mysqli_fetch_assoc($result)){
+                ?>
+                        <tr>
+                            <td><?php echo $row['id'] ?></td>
+                            <td><?php echo $row['dname'] ?></td>
+                            <td><?php echo $row['manu'] ?></td>
+                            <td><?php echo $row['sup'] ?></td>
+                            <td><?php echo $row['ndc'] ?></td>
+                            <td><?php echo $row['exp'] ?></td>
+                            <td><?php echo $row['qty'] ?></td>
+                            <td><?php echo $row['uprice'] ?></td>
+                            <td>
+                                <a href='<?php echo "update.php?id=$row[id]"?>'><i class="fa-solid fa-pen"></i></a> &nbsp; &nbsp; &nbsp;
+                                <a href='<?php echo "../includes/delete.inc.php?id=$row[id]"?>' onclick="return confirm('Are you sure you want to delete this drug?')"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+                <?php
+                    }
+                }
+                ?>
             </tbody>
         </table>
 
@@ -42,4 +58,8 @@
     
 <?php
     include_once '../includes/footer.inc.php';
+}else{
+    header('Location:signin.php');
+    exit();
+}
 ?>
