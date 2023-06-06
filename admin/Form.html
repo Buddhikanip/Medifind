@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Form.css">
+</head>
+<body>
+    <nav class="horizontal">
+        <div class="Logo"><img src="../images/MediFine_Logo1.png" alt="Logo" width = "100" height = "100"></div>
+        <ul>
+            <li><a href = "#">Pharmacy Name</a></li>
+        </ul>
+    </nav>
+
+    <section></section>
+
+    <nav class="vertical">
+        <div class="style2">
+            <ul>
+                <li><a href="#">Inventory</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div>
+        <p class="topic">
+            <span class="subtopic">Inventory</span> / Add New Drug
+        </p>
+    </div>
+
+    <div>
+        <form action="#" class="Drugform">
+            <select name="MEDname" id="MEDname" required>
+                <option aria-placeholder="">Select Drug Name</option>
+                <option value="first">first</option>
+            </select><br><br>
+            <input type="text" id="Mname" name="Mname" placeholder="Manufacture" required><br><br>
+            <input type="text" id="Sname" name="Sname" placeholder="Supplier" required><br><br>
+            <input type="text" id="NDCname" name="NDCname" placeholder="NDC(National Drug Code)" required><br><br>
+            <input type="text" id="birthdate" placeholder="Set Expiration Date" required><br><br>
+            <select name="Availability" id="Availability" required>
+                <option>Quality On Hand</option>
+                <option>Poor Quality</option>
+            </select><br><br>
+            <input type="text" id="price" name="price" placeholder="Unit Price" required><br><br>
+            <input type="submit" id="submit" value="Add Drug">
+        </form>
+    </div>
+
+    
+</body>
+</html>
