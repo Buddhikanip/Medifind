@@ -4,15 +4,16 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <base href="<?php echo (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . '/' ?>" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Header</title>
+    <title><?php echo $title ?></title>
     
-    <link rel="icon" href="../images/MediFine_Logo_Plain.png">
+    <link rel="icon" href="medifind/images/MediFine_Logo_Plain.png">
 
     
-  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="medifind/style.css" />
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <!-- <link href="https://fontawesome.com/icons/shelves?f=classic&s=solid" rel="stylesheet" /> -->
@@ -36,8 +37,8 @@ session_start();
     <!-- Container wrapper -->
     <div class="container-fluid">
       <!-- Brand -->
-      <a class="navbar-brand" href="#">
-        <img src="../images/MediFine_Logo1.png" height="25" alt="Medifine Logo"
+      <a class="navbar-brand" href="medifind/admin/index.php">
+        <img src="medifind/images/MediFine_Logo1.png" height="25" alt="Medifine Logo"
           loading="lazy" />
       </a>
       
@@ -45,7 +46,7 @@ session_start();
       <!-- Right links -->
         <ul class="navbar-nav ms-auto me-5 d-flex flex-row">
             <li class="nav-item">
-                <a class="nav-link" href="../includes/admin/signout.inc.php"><button type="button" class="btn btn-primary btn-sm"> LogOut </button></a>
+                <a class="nav-link" href="medifind/includes/admin/signout.inc.php"><button type="button" class="btn btn-primary btn-sm"> LogOut </button></a>
             </li>
         </ul>
       

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION["uname"]))
+{
+    header('Location:index.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +13,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MediFine-Sign In</title>
+  <title>Admin - Sign In</title>
   <link rel="icon" href="../images/MediFine_Logo_Plain.png">
 
   <!-- <link rel="stylesheet" href="signin.css" /> -->
@@ -53,7 +61,7 @@
                       <!-- Checkbox -->
                       <div class="form-check mb-0">
                         <input class="form-check-input me-2" type="checkbox" value="" />
-                        <label class="form-check-label"\>
+                        <label class="form-check-label mb-4"\>
                           Remember me
                         </label>
                       </div>
@@ -70,6 +78,10 @@
                         else if($_GET["error"] =="wrongPassword")
                         {
                             echo '<div class="alert alert-danger">Enter valid password</div>';
+                        }
+                        else if($_GET["error"] =="timeout")
+                        {
+                            echo '<div class="alert alert-danger">Session timeout !</div>';
                         }
                       }
                     ?>

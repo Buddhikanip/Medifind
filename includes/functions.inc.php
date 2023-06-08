@@ -1,7 +1,7 @@
 <?php
 function uidExists($conn,$plicense,$email)
 {
-    $sql = "SELECT * FROM phamacy WHERE email = ? OR plicense = ?;";
+    $sql = "SELECT * FROM phamacy WHERE plicense = ? OR email = ?;";
     $stmt = mysqli_stmt_init($conn);
 
     if(!mysqli_stmt_prepare($stmt,$sql)){
@@ -40,9 +40,9 @@ function loginUser($conn,$username,$pwd)
     {
         session_start();
         $_SESSION["id"] = $uidExists["id"];
-        $_SESSION["uid"] = $uidExists["uid"];
         $_SESSION["pname"] = $uidExists["pname"];
         header("Location:../pharmacy/index.php");
+        // echo $_SESSION['pname'];
         exit();
     }
 }
@@ -121,20 +121,29 @@ function addnew($conn,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice)
 
 function checkDname($dname)
 {
-    if($dname == 'Select Drug Name')
+    if($dname === 'Select Drug Name')
     {
         return true;
     }
-    return false;
-    
+    return false;    
 }
 
 function update($conn,$id,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice)
 {
-
+    $sql = "SELECT * FROM inventory WHERE id=$id";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();if(!$row){
+        header("Location: ../pharmacy/update.php?error=stmtfailed&id=$id");
+        exit;
+    }
+    $sql = "UPDATE inventory SET dname = '$dname', manu = '$manu', sup = '$sup',  ndc = '$ndc', exp = '$exp', qty = '$qty',uprice = '$uprice'
+            WHERE id = '$id'";
+    mysqli_query($conn, $sql);
+    header('Location:../pharmacy/index.php');
+    exit();
 }
 
-function updatealter($conn,$id)
+function updatealter($conn,$id,$s)
 {
     $sql = "SELECT * FROM temp_phamacy WHERE id=$id";
     $result = $conn->query($sql);
@@ -142,25 +151,39 @@ function updatealter($conn,$id)
         header("Location: login.php?error=stmtfailed");
         exit;
     }
-    $sql = "UPDATE temp_phamacy SET status = 1 WHERE id = '$id'";
+    $sql = "UPDATE temp_phamacy SET status = $s WHERE id = '$id'";
     mysqli_query($conn, $sql);
 }
 
 function createPham($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$id)
 {
+    $uidExists1 = uidExists($conn,$plicense,$plicense);
+    $uidExists2 = uidExists($conn,$email,$email);
+    if(!($uidExists1 === false))
+    {
+        header("Location:../../admin/verify.php?id=$id&error=againp");
+        echo $uidExists;
+        exit();
+    }    
+    if(!($uidExists2 === false))
+    {
+        header("Location:../../admin/verify.php?id=$id&error=againe");
+        echo $uidExists;
+        exit();
+    }    
     $sql = "INSERT INTO phamacy (pname,oname,email,address,tel,plicense,pwd) VALUES (?,?,?,?,?,?,?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt,$sql)){
-        header("Location:../admin/verify.php?error=stmtfailed");
+        header("Location:../../admin/verify.php?id=$id&error=stmtfailed");
         exit();
     }
     mysqli_stmt_bind_param($stmt,"sssssss",$pname,$oname,$email,$address,$tel,$plicense,$pwd);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    updatealter($conn,$id);
-    header("Location:../../admin/verify.php?error=none");
+    updatealter($conn,$id,1);
+    // header("Location:../../admin/verify.php?id=$id&error=none");
+    header("Location:../../admin/index.php");
     exit();
-
 }
 
 function checkqty($qty)
@@ -170,4 +193,45 @@ function checkqty($qty)
         return true;
     }
     return false;
+}
+
+function delPham($conn,$id,$plicense)
+{
+    updatealter($conn,$id,0);    
+    $uidExists = uidExists($conn,$plicense,$plicense);
+    if($uidExists === false)
+    {
+        header("Location:../../admin/verify.php?id=$id&error=not");
+        exit();
+    }
+    $id=$uidExists['id'];
+    $sql = "DELETE FROM phamacy WHERE id=$id";
+    $conn->query($sql);
+
+    header("Location:../../admin/index.php");
+    exit();
+}
+
+function del($conn,$id)
+{
+    $sql = "DELETE FROM temp_phamacy WHERE id=$id";
+    $conn->query($sql);
+
+    header("location: ../../admin/index.php");
+    exit();
+}
+
+function updatePham($conn,$id,$pname,$address,$tel,$web,$hor,$oname,$oaddress,$otel,$oemail,$onic)
+{
+    $sql = "SELECT * FROM phamacy WHERE id=$id";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();if(!$row){
+        header("Location: ../pharmacy/profile.php?error=stmtfailed");
+        exit;
+    }
+    $sql = "UPDATE phamacy SET pname = '$pname', address = '$address', tel = '$tel',  web = '$web', hor = '$hor', oname = '$oname',oaddress = '$oaddress' , otel = '$otel' , oemail = '$oemail', onic = '$onic'
+            WHERE id = '$id'";
+    mysqli_query($conn, $sql);
+    header('Location:../pharmacy/profile.php?error=none');
+    exit();
 }

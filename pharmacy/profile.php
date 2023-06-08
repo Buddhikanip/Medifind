@@ -5,12 +5,12 @@
 
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
     
-        if(!isset($_GET["id"])){
+        if(!isset($_SESSION["id"])){
             header("location: index.php");
             exit;
         }
     
-        $id = $_GET["id"];
+        $id = $_SESSION["id"];
         $sql = "SELECT * FROM phamacy WHERE id=$id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
@@ -41,7 +41,7 @@
 
 <div class="container pt-3 ps-4">
 
-        <form action="../includes/addnew.inc.php" method="post" class="p-5">
+        <form action="medifind/includes/profile.inc.php" method="post" class="p-5">
             <h3>Pharmacy Information</h3>
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <!-- Gutter g-5 -->
@@ -71,7 +71,7 @@
                 <div class="col-md-6">
                     <!-- NDC input -->
                     <div class="form-outline">
-                        <input type="email" name='email' class="form-control form-control-lg" value='<?php echo $row["email"]?>' required/>
+                        <input type="email" name='email' class="form-control form-control-lg" value='<?php echo $row["email"]?>'  readonly/>
                         <label class="form-label" >Email</label>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                 <div class="col-md-6">
                     <!-- date input -->
                     <div class="form-outline">
-                        <input type="text" name='plicense' class="form-control form-control-lg"value='<?php echo $row["plicense"]?>' required/>
+                        <input type="text" name='plicense' class="form-control form-control-lg"value='<?php echo $row["plicense"]?>'  readonly/>
                         <label class="form-label" >Pharmacy License</label>
                     </div>
                 </div>
@@ -155,15 +155,7 @@
                     }
                     else if($_GET["error"] =="none")
                     {
-                        echo '<div class="alert alert-success">Drug added succesfully !</div>';
-                    }
-                    else if($_GET["error"] =="dname")
-                    {
-                        echo '<div class="alert alert-danger">Please select a drug !</div>';
-                    }
-                    else if($_GET["error"] =="qty")
-                    {
-                        echo '<div class="alert alert-danger">Please enter valid datatype to \'Quantity on hand\' !</div>';
+                        echo '<div class="alert alert-success">Profile updated succesfully !</div>';
                     }
                 }
             ?>

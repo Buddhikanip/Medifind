@@ -14,7 +14,18 @@ if(isset($_POST["submit"]))
     require_once '../dbh.inc.php';
     require_once '../functions.inc.php';
 
-    createPham($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$id);
+    echo $status;
+    if($status)
+    {
+        // echo $status;
+        createPham($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$id);
+    }
+    else
+    {
+        delPham($conn,$id,$plicense);
+    }
+
+    
     
 }
 else{

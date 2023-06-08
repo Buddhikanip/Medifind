@@ -4,15 +4,16 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <base href="<?php echo (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . '/' ?>" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title ?></title>
     
-    <link rel="icon" href="../images/MediFine_Logo_Plain.png">
+    <link rel="icon" href="Medifind/images/MediFine_Logo_Plain.png">
 
     
-  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="Medifind/style.css" />
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <!-- <link href="https://fontawesome.com/icons/shelves?f=classic&s=solid" rel="stylesheet" /> -->
@@ -34,11 +35,11 @@ session_start();
   <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <a href="index.php" class="list-group-item list-group-item-action py-2 ripple <?php if($title !=='profile') echo "active" ?> aria-current="true">
+        <a href="Medifind/pharmacy/index.php" class="list-group-item list-group-item-action py-2 ripple <?php if($title !=='profile') echo "active" ?> aria-current="true">
           <i class="fas fa-warehouse fa-fw me-3"></i><span>Inventory</span></a>
-        <a href="profile.php" class="list-group-item list-group-item-action py-2 ripple <?php if($title =='profile') echo "active" ?> ">
+        <a href="Medifind/pharmacy/profile.php" class="list-group-item list-group-item-action py-2 ripple <?php if($title =='profile') echo "active" ?> ">
           <i class="fas fa-user fa-fw me-3"></i><span>Profile</span></a>
-        <a href="../includes/signout.inc.php" class="list-group-item list-group-item-action py-2 ripple">
+        <a href="Medifind/includes/signout.inc.php" class="list-group-item list-group-item-action py-2 ripple">
             <i class="fas fa-right-from-bracket fa-fw me-3"></i><span>Logout</span></a>        
       </div>
     </div>
@@ -57,7 +58,7 @@ session_start();
 
       <!-- Brand -->
       <a class="navbar-brand" href="#">
-        <img src="../images/MediFine_Logo1.png" height="25" alt="Medifine Logo"
+        <img src="Medifind/images/MediFine_Logo1.png" height="25" alt="Medifine Logo"
           loading="lazy" />
       </a>
       

@@ -11,14 +11,17 @@ if(isset($_POST["submit"]))
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
+    echo $dname;
     
     if(checkDname($dname))
     {
         header('Location:../pharmacy/addnew.php?error=dname');
+        exit();
     }    
     if(!checkqty($qty))
     {
         header('Location:../pharmacy/addnew.php?error=qty');
+        exit();
     }
 
     addnew($conn,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice);
@@ -39,23 +42,13 @@ else if(isset($_POST["update"]))
     
     if(checkDname($dname))
     {
-        header('Location:../phamacy/addnew.php?error=dname');
+        header("Location:../pharmacy/update.php?error=dname&id=$id");
+        exit();
     }
 
     update($conn,$id,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice);
 }
-else if(isset($_POST['profile']))
-{
-    $id = $_POST['id'];
-    $dname = $_POST['dname'];
-    $manu = $_POST['manu'];
-    $sup = $_POST['sup'];
-    $ndc = $_POST['ndc'];
-    $exp = $_POST['exp'];
-    $qty = $_POST['qty'];
-    $uprice = $_POST['uprice'];
-}
 else{
-    header('Location:../phamacy/addnew.php');
+    header('Location:../pharmacy/addnew.php');
     exit();
 }
