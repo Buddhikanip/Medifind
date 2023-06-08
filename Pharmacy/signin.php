@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION["pname"]))
+{
+    header('Location:index.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +61,7 @@
                       <!-- Checkbox -->
                       <div class="form-check mb-0">
                         <input class="form-check-input me-2" type="checkbox" value="" />
-                        <label class="form-check-label"\>
+                        <label class="form-check-label mb-4"\>
                           Remember me
                         </label>
                       </div>
@@ -74,6 +82,9 @@
                         else if($_GET["error"] =="none")
                         {
                             echo '<div class="alert alert-success">Account created successfully Please signin now !</div>';
+                        }else if($_GET["error"] =="timeout")
+                        {
+                            echo '<div class="alert alert-danger">Session timeout !</div>';
                         }
                       }
                     ?>

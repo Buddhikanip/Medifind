@@ -10,14 +10,14 @@ if(isset($_SESSION["pname"]))
         <!-- Breadcrumb -->
         <nav class="d-flex">
         <p class="mb-0">
-            <a href="index.php" class="text-reset"><u>Inventory</u></a>
+            <a href="medifind/pharmacy/index.php" class="text-reset"><u>Inventory</u></a>
             <span>/</span>
-            <a href="addnew.php" class="text-reset">Add new drug</a>
+            <a href="medifind/pharmacy/addnew.php" class="text-reset">Add new drug</a>
         </p>
         </nav>
         <!-- Breadcrumb -->
 
-        <form action="../includes/addnew.inc.php" method="post" class="p-5">
+        <form action="medifind/includes/addnew.inc.php" method="post" class="p-5">
             <!-- Gutter g-5 -->
             <div class="row g-5 mb-5">
                 <div class="col-md-6">

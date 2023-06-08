@@ -36,14 +36,14 @@
         <!-- Breadcrumb -->
         <nav class="d-flex">
         <p class="mb-0">
-            <a href="index.php" class="text-reset"><u>Inventory</u></a>
+            <a href="medifind/pharmacy/index.php" class="text-reset"><u>Inventory</u></a>
             <span>/</span>
-            <a href="update.php" class="text-reset">Update drug</a>
+            <a href="medifind/pharmacy/update.php?id=<?php echo $id?>" class="text-reset">Update drug</a>
         </p>
         </nav>
         <!-- Breadcrumb -->
 
-        <form action="../includes/addnew.inc.php" method="post" class="p-5">
+        <form action="medifind/includes/addnew.inc.php" method="post" class="p-5">
             
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <!-- Gutter g-5 -->

@@ -1,4 +1,5 @@
 <?php
+$title = 'Verify Pharamcy';
 include_once '../includes/admin/header.inc.php';
 include_once '../includes/dbh.inc.php';
 
@@ -33,13 +34,13 @@ else
     header("Location: index.php");
     exit();
 }
-if(isset($_SESSION["userfname"]) === "Admin")
+if(isset($_SESSION["uname"]) == "Admin")
 {
 ?>
 
 <div class="container p-5">
-  <h3 class='pb-4'>Edit page - <?php echo $row['pname']?></h3>
-                <form class="mx-1 mx-md-4" action="../includes/admin/verify.inc.php" method="post">
+  <h3 class='pb-5'>Edit page - <?php echo $row['pname']?></h3>
+                <form class="mx-1 mx-md-4" action="medifind/includes/admin/verify.inc.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
 
                     <div class="d-flex flex-row align-items-center mb-4">
@@ -53,7 +54,7 @@ if(isset($_SESSION["userfname"]) === "Admin")
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" name="oname" class="form-control" value="<?php echo $oname; ?>" required />
+                        <input type="text" name="oname" class="form-control" value="<?php echo $oname; ?>" />
                         <label class="form-label">Owner Name</label>
                       </div>
                     </div>
@@ -97,22 +98,22 @@ if(isset($_SESSION["userfname"]) === "Admin")
                       if($status == "1")
                       {
                           echo "<div class=\"form-check\">
-                              <input class=\"form-check-input\" type=\"radio\" name=\"status\" checked/>
+                              <input class=\"form-check-input\" type=\"radio\" name=\"status\" value=1 checked/>
                               <label class=\"form-check-label\" for=\"status\"> Verified </label>
                           </div>
                         
                           <div class=\"form-check\">
-                              <input class=\"form-check-input\" type=\"radio\" name=\"status\"/>
+                              <input class=\"form-check-input\" type=\"radio\" name=\"status\" value=0 />
                               <label class=\"form-check-label\" for=\"status\">  Not Verified </label>
                           </div>";
                       }else {
                           echo "<div class=\"form-check\">
-                              <input class=\"form-check-input\" type=\"radio\" name=\"status\"/>
+                              <input class=\"form-check-input\" type=\"radio\" name=\"status\" value=1 />
                               <label class=\"form-check-label\" for=\"status\"> Verified </label>
                           </div>
                         
                           <div class=\"form-check\">
-                              <input class=\"form-check-input\" type=\"radio\" name=\"status\" checked/>
+                              <input class=\"form-check-input\" type=\"radio\" name=\"status\" value=0 checked/>
                               <label class=\"form-check-label\" for=\"status\">  Not Verified </label>
                           </div>";
                       }
@@ -129,6 +130,18 @@ if(isset($_SESSION["userfname"]) === "Admin")
                               else if($_GET["error"] =="none")
                               {
                                   echo '<div class="alert alert-success">Pharmacy verified succesfully !</div>';
+                              }
+                              else if($_GET["error"] =="againp")
+                              {
+                                  echo '<div class="alert alert-danger">This pharmacy already verified !</div>';
+                              }
+                              else if($_GET["error"] =="againe")
+                              {
+                                  echo '<div class="alert alert-danger">This email already verified !</div>';
+                              }
+                              else if($_GET["error"] =="not")
+                              {
+                                  echo '<div class="alert alert-danger">This pharmacy not verified yet !</div>';
                               }
                           }
                       ?>

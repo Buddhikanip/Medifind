@@ -3,9 +3,9 @@ if(isset($_GET["id"])){
     $id = $_GET["id"];
 
     include_once '../dbh.inc.php';
+    include_once '../functions.inc.php';
 
-    $sql = "DELETE FROM temp_phamacy WHERE id=$id";
-    $conn->query($sql);
+    del($conn,$id);
 }
 
 header("location: ../../admin/index.php");

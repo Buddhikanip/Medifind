@@ -8,7 +8,7 @@ if(isset($_SESSION["pname"]))
 ?>
 
     <div class="container pt-5 ps-4">
-        <a class='btn btn-primary float-end me-5' href='addnew.php'>Add new drug</a>
+        <a class='btn btn-primary float-end me-5' href='Medifind/pharmacy/addnew.php'>Add new drug</a>
         <h3>Inventory</h3>
 
         <table class="table table-hover text-center text-nowrap mt-5">
@@ -43,8 +43,8 @@ if(isset($_SESSION["pname"]))
                             <td><?php echo $row['qty'] ?></td>
                             <td><?php echo $row['uprice'] ?></td>
                             <td>
-                                <a href='<?php echo "update.php?id=$row[id]"?>'><i class="fa-solid fa-pen"></i></a> &nbsp; &nbsp; &nbsp;
-                                <a href='<?php echo "../includes/delete.inc.php?id=$row[id]"?>' onclick="return confirm('Are you sure you want to delete this drug?')"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href='<?php echo "medifind/pharmacy/update.php?id=$row[id]"?>'><i class="fa-solid fa-pen"></i></a> &nbsp; &nbsp; &nbsp;
+                                <a href='<?php echo "medifind/includes/delete.inc.php?id=$row[id]"?>' onclick="return confirm('Are you sure you want to delete this drug?')"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                 <?php
