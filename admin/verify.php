@@ -62,7 +62,7 @@ if(isset($_SESSION["uname"]) == "Admin")
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="email" name="email" class="form-control" value="<?php echo $email; ?>" required />
+                        <input type="email" name="email" class="form-control" value="<?php echo $email; ?>" readonly />
                         <label class="form-label" for="email">Email</label>
                       </div>
                     </div>
@@ -86,7 +86,7 @@ if(isset($_SESSION["uname"]) == "Admin")
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-hashtag fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" name="plicense" class="form-control" value="<?php echo $plicense; ?>" required />
+                        <input type="text" name="plicense" class="form-control" value="<?php echo $plicense; ?>" readonly />
                         <label class="form-label" for="plicense">Pharmacy Licence Number</label>
                       </div>
                     </div>

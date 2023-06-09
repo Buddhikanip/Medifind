@@ -17,7 +17,6 @@ if(isset($_POST["submit"]))
     echo $status;
     if($status)
     {
-        // echo $status;
         createPham($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$id);
     }
     else

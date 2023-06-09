@@ -143,15 +143,15 @@ function update($conn,$id,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice)
     exit();
 }
 
-function updatealter($conn,$id,$s)
+function updatealter($conn,$pname,$oname,$address,$tel,$id,$s)
 {
     $sql = "SELECT * FROM temp_phamacy WHERE id=$id";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();if(!$row){
-        header("Location: login.php?error=stmtfailed");
+        header("Location:../../admin/verify.php?id=$id&error=stmtfailed");
         exit;
     }
-    $sql = "UPDATE temp_phamacy SET status = $s WHERE id = '$id'";
+    $sql = "UPDATE temp_phamacy SET pname = '$pname', oname = '$oname', address = '$address', tel = '$tel', status = '$s' WHERE id = '$id'";
     mysqli_query($conn, $sql);
 }
 
@@ -180,7 +180,7 @@ function createPham($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$id)
     mysqli_stmt_bind_param($stmt,"sssssss",$pname,$oname,$email,$address,$tel,$plicense,$pwd);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    updatealter($conn,$id,1);
+    updatealter($conn,$pname,$oname,$address,$tel,$id,1);
     // header("Location:../../admin/verify.php?id=$id&error=none");
     header("Location:../../admin/index.php");
     exit();
