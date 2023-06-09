@@ -42,7 +42,7 @@
 <div class="container pt-3 ps-4">
 
         <form action="medifind/includes/profile.inc.php" method="post" class="p-5">
-            <h3>Pharmacy Information</h3>
+            <h3 class="mb-4">Pharmacy Information</h3>
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <!-- Gutter g-5 -->
             <div class="row g-5 mb-5">
@@ -102,7 +102,7 @@
                 </div>
             </div>
 
-            <h3>Owner Information</h3>
+            <h3 class="mb-4">Owner Information</h3>
             <!-- Gutter g-5 -->
             <div class="row g-5 mb-5">
                 <div class="col-md-6">
