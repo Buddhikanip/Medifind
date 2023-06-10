@@ -9,18 +9,18 @@ if(isset($_POST["submit"]))
     $qty = $_POST["qty"];
     $uprice = $_POST["uprice"];
 
-    require_once 'dbh.inc.php';
-    require_once 'functions.inc.php';
+    require_once '../dbh.inc.php';
+    require_once '../functions.inc.php';
     echo $dname;
     
     if(checkDname($dname))
     {
-        header('Location:../pharmacy/addnew.php?error=dname');
+        header('Location:../../pharmacy/addnew.php?error=dname');
         exit();
     }    
     if(!checkqty($qty))
     {
-        header('Location:../pharmacy/addnew.php?error=qty');
+        header('Location:../../pharmacy/addnew.php?error=qty');
         exit();
     }
 
@@ -37,18 +37,18 @@ else if(isset($_POST["update"]))
     $qty = $_POST["qty"];
     $uprice = $_POST["uprice"];
 
-    require_once 'dbh.inc.php';
-    require_once 'functions.inc.php';
+    require_once '../dbh.inc.php';
+    require_once '../functions.inc.php';
     
     if(checkDname($dname))
     {
-        header("Location:../pharmacy/update.php?error=dname&id=$id");
+        header("Location:../../pharmacy/update.php?error=dname&id=$id");
         exit();
     }
 
     update($conn,$id,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice);
 }
 else{
-    header('Location:../pharmacy/addnew.php');
+    header('Location:../../pharmacy/addnew.php');
     exit();
 }

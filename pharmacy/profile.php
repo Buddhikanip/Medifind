@@ -1,6 +1,6 @@
 <?php
     $title = 'profile';
-    include_once '../includes/header.inc.php';
+    include_once '../includes/pharmacy/header.inc.php';
     include_once '../includes/dbh.inc.php';
 
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
@@ -41,7 +41,7 @@
 
 <div class="container pt-3 ps-4">
 
-        <form action="medifind/includes/profile.inc.php" method="post" class="p-5">
+        <form action="medifind/includes/pharmacy/profile.inc.php" method="post" class="p-5">
             <h3 class="mb-4">Pharmacy Information</h3>
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <!-- Gutter g-5 -->
@@ -202,7 +202,7 @@
 </script>
 
 <?php
-    include_once '../includes/footer.inc.php';
+    include_once '../includes/pharmacy/footer.inc.php';
 }else{
     header('Location:signin.php');
     exit();

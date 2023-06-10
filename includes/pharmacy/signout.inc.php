@@ -2,5 +2,5 @@
     session_start();
     session_unset();
     session_destroy();
-    header("Location:../pharmacy/index.php");
+    header("Location:../../pharmacy/index.php");
     exit();

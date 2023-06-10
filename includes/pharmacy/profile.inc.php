@@ -13,8 +13,8 @@ if(isset($_POST['profile']))
     $oemail = $_POST['oemail'];
     $onic = $_POST['onic'];
     
-    require_once 'dbh.inc.php';
-    require_once 'functions.inc.php';
+    require_once '../dbh.inc.php';
+    require_once '../functions.inc.php';
 
     updatePham($conn,$id,$pname,$address,$tel,$web,$hor,$oname,$oaddress,$otel,$oemail,$onic);
 

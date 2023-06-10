@@ -1,6 +1,6 @@
 <?php
     $title = 'Pharmacy';
-    include_once '../includes/header.inc.php';
+    include_once '../includes/pharmacy/header.inc.php';
     include_once '../includes/dbh.inc.php';
 
 if(isset($_SESSION["pname"]))
@@ -44,7 +44,7 @@ if(isset($_SESSION["pname"]))
                             <td><?php echo $row['uprice'] ?></td>
                             <td>
                                 <a href='<?php echo "medifind/pharmacy/update.php?id=$row[id]"?>'><i class="fa-solid fa-pen"></i></a> &nbsp; &nbsp; &nbsp;
-                                <a href='<?php echo "medifind/includes/delete.inc.php?id=$row[id]"?>' onclick="return confirm('Are you sure you want to delete this drug?')"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href='<?php echo "medifind/includes/pharmacy/delete.inc.php?id=$row[id]"?>' onclick="return confirm('Are you sure you want to delete this drug?')"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                 <?php
@@ -57,7 +57,7 @@ if(isset($_SESSION["pname"]))
     </div>
     
 <?php
-    include_once '../includes/footer.inc.php';
+    include_once '../includes/pharmacy/footer.inc.php';
 }else{
     header('Location:signin.php');
     exit();

@@ -10,7 +10,7 @@
         <script>
             setTimeout(logout,900000);
             function logout(){
-                window.location ='medifind/includes/auto.inc.php' ;
+                window.location ='medifind/includes/pharmacy/auto.inc.php' ;
             }
         </script>";
     }

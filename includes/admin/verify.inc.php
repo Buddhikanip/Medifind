@@ -14,7 +14,6 @@ if(isset($_POST["submit"]))
     require_once '../dbh.inc.php';
     require_once '../functions.inc.php';
 
-    echo $status;
     if($status)
     {
         createPham($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$id);
@@ -23,9 +22,6 @@ if(isset($_POST["submit"]))
     {
         delPham($conn,$id,$plicense);
     }
-
-    
-    
 }
 else{
     header('Location:../admin/signin.php');

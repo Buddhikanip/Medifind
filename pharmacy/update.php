@@ -1,6 +1,6 @@
 <?php
     $title = 'Update Drug';
-    include_once '../includes/header.inc.php';
+    include_once '../includes/pharmacy/header.inc.php';
     include_once '../includes/dbh.inc.php';
 
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
@@ -43,7 +43,7 @@
         </nav>
         <!-- Breadcrumb -->
 
-        <form action="medifind/includes/addnew.inc.php" method="post" class="p-5">
+        <form action="medifind/includes/pharmacy/addnew.inc.php" method="post" class="p-5">
             
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <!-- Gutter g-5 -->
@@ -132,7 +132,7 @@
     <script src="js/sweetalert.min.js"></script>
     
 <?php
-    include_once '../includes/footer.inc.php';
+    include_once '../includes/pharmacy/footer.inc.php';
 }else{
     header('Location:signin.php');
     exit();
