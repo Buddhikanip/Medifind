@@ -1,6 +1,6 @@
 <?php
     $title = 'Add New Drug';
-    include_once '../includes/header.inc.php';
+    include_once '../includes/pharmacy/header.inc.php';
 
 if(isset($_SESSION["pname"]))
 {
@@ -17,7 +17,7 @@ if(isset($_SESSION["pname"]))
         </nav>
         <!-- Breadcrumb -->
 
-        <form action="medifind/includes/addnew.inc.php" method="post" class="p-5">
+        <form action="medifind/includes/pharmacy/addnew.inc.php" method="post" class="p-5">
             <!-- Gutter g-5 -->
             <div class="row g-5 mb-5">
                 <div class="col-md-6">
@@ -107,7 +107,7 @@ if(isset($_SESSION["pname"]))
     </div>
     
 <?php
-    include_once '../includes/footer.inc.php';
+    include_once '../includes/pharmacy/footer.inc.php';
 }else{
     header('Location:signin.php');
     exit();

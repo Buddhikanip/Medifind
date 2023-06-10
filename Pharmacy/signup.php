@@ -40,7 +40,7 @@ if(isset($_SESSION["pname"]))
                 <div class="col-10 col-sm-10 col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                   
 
-                  <form class="mx-1 mx-md-4" action="../includes/signup.inc.php" method="post">
+                  <form class="mx-1 mx-md-4" action="../includes/pharmacy/signup.inc.php" method="post">
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-prescription-bottle-medical fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">

@@ -10,8 +10,8 @@ if(isset($_POST["submit"]))
     $pwdr = $_POST["pwdr"];
     $status = 0;
 
-    require_once 'dbh.inc.php';
-    require_once 'functions.inc.php';
+    require_once '../dbh.inc.php';
+    require_once '../functions.inc.php';
 
     $invalidEmail = invalidEmail($email);
     $pwdMatch = pwdMatch($pwd,$pwdr);
@@ -19,17 +19,17 @@ if(isset($_POST["submit"]))
 
     if($invalidEmail !== false)
     {
-        header("Location:../pharmacy/signup.php?error=invalidEmail");
+        header("Location:../../pharmacy/signup.php?error=invalidEmail");
         exit();
     }
     if($pwdMatch !== false)
     {
-        header("Location:../pharmacy/signup.php?error=pwdDontMatch");
+        header("Location:../../pharmacy/signup.php?error=pwdDontMatch");
         exit();
     }
     if($uidExists !== false)
     {
-        header("Location:../pharmacy/signup.php?error=userNameTaken");
+        header("Location:../../pharmacy/signup.php?error=userNameTaken");
         exit();
     }
 
@@ -37,6 +37,6 @@ if(isset($_POST["submit"]))
     
 }
 else{
-    header('Location:../pharmacy/signup.php');
+    header('Location:../../pharmacy/signup.php');
     exit();
 }

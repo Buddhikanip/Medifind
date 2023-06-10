@@ -39,7 +39,7 @@ session_start();
           <i class="fas fa-warehouse fa-fw me-3"></i><span>Inventory</span></a>
         <a href="Medifind/pharmacy/profile.php" class="list-group-item list-group-item-action py-2 ripple <?php if($title =='profile') echo "active" ?> ">
           <i class="fas fa-user fa-fw me-3"></i><span>Profile</span></a>
-        <a href="Medifind/includes/signout.inc.php" class="list-group-item list-group-item-action py-2 ripple">
+        <a href="Medifind/includes/pharmacy/signout.inc.php" class="list-group-item list-group-item-action py-2 ripple">
             <i class="fas fa-right-from-bracket fa-fw me-3"></i><span>Logout</span></a>        
       </div>
     </div>
@@ -57,7 +57,7 @@ session_start();
       </button>
 
       <!-- Brand -->
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href='medifind/pharmacy/index.php' >
         <img src="Medifind/images/MediFine_Logo1.png" height="25" alt="Medifine Logo"
           loading="lazy" />
       </a>
