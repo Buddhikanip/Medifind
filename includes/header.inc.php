@@ -45,10 +45,10 @@ session_start();
       <!-- Right links -->
         <ul class="navbar-nav ms-auto me-5 d-flex flex-row">
             <li class="nav-item">
-                <a class="nav-link"><button type="button" class="btn btn-primary btn-sm" onclick="shsb()"> Search </button></a>
+                <a class="nav-link"><button type="button" class="btn btn-primary btn-sm" id="shsb"> Search </button></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" ><button type="button" class="btn btn-primary btn-sm" onclick="vap()"> Show all pharmacies </button></a>
+                <a class="nav-link" ><button type="button" class="btn btn-primary btn-sm" id="shp"> Show all pharmacies </button></a>
             </li>
         </ul>
       

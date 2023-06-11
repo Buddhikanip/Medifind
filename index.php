@@ -10,10 +10,10 @@
 
         <div class="input-group text-nowrap" id="search-box" style="display:none;width:40%;margin: auto;">
             <div class="form-outline">
-                <input type="search" type="search" id="form1" class="form-control" />
-                <label class="form-label" for="form1">Search</label>
+                <input type="search" type="search"class="form-control" />
+                <label class="form-label">Search</label>
             </div>
-            <!-- <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>             -->
+            <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>            
         </div>
 
         <table class="table table-hover text-center text-nowrap mt-5" id="vd">
@@ -78,27 +78,19 @@
 
     </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
-    function shsb() {
-        var x = document.getElementById("search-box");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-
-    function vap() {
-        var x = document.getElementById("vd");
-        var y = document.getElementById("va");
-        if (x.style.display === "none") {
-            x.style.display = "flex";
-            y.style.display = "none";
-        } else {
-            y.style.display = "flex";
-            x.style.display = "none";
-        }
-    }
+    $(document).ready(function(){
+        $("#shsb").click(function(){
+            $("#search-box").toggle();
+        });
+    });
+    $(document).ready(function(){
+        $("#shp").click(function(){
+            $("#va").toggle();
+            $("#vd").toggle();
+        });
+    });
 </script>
 
 <?php
