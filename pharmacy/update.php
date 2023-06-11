@@ -9,9 +9,11 @@
             header("location: index.php");
             exit;
         }
+
+        $clean = $_SESSION["cleanStr"];
     
         $id = $_GET["id"];
-        $sql = "SELECT * FROM inventory WHERE id=$id";
+        $sql = "SELECT * FROM $clean WHERE id=$id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
     
@@ -20,13 +22,13 @@
             exit;
         }
     
-        $dname = $row["dname"];
-        $manu = $row["manu"];
-        $sup = $row["sup"];
-        $ndc = $row["ndc"];
-        $exp = $row["exp"];
-        $qty = $row["qty"];
-        $uprice = $row["uprice"];
+        // $dname = $row["dname"];
+        // $manu = $row["manu"];
+        // $sup = $row["sup"];
+        // $ndc = $row["ndc"];
+        // $exp = $row["exp"];
+        // $qty = $row["qty"];
+        // $uprice = $row["uprice"];
     }
     if(isset($_SESSION["pname"]))
 {
@@ -123,6 +125,9 @@
                     }
                 }
             ?>
+            <input type="hidden" name="pname" value="<?php echo $_SESSION["pname"]; ?>">
+            <input type="hidden" name="cleanStr" value="<?php echo $_SESSION["cleanStr"]; ?>">
+            <input type="hidden" name="iid" value="<?php echo $row["iid"]; ?>">
 
             <!-- Submit button -->
             <button name="update" type="submit" class="btn btn-primary btn-block">Update Drug</button>

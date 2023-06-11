@@ -99,6 +99,8 @@ if(isset($_SESSION["pname"]))
                     }
                 }
             ?>
+            <input type="hidden" name="pname" value="<?php echo $_SESSION["pname"]; ?>">
+            <input type="hidden" name="cleanStr" value="<?php echo $_SESSION["cleanStr"]; ?>">
 
             <!-- Submit button -->
             <button name="submit" type="submit" class="btn btn-primary btn-block">Add Drug</button>

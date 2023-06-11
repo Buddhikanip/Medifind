@@ -8,10 +8,11 @@ if(isset($_POST["submit"]))
     $exp = $_POST["exp"];
     $qty = $_POST["qty"];
     $uprice = $_POST["uprice"];
+    $pname = $_POST["pname"];
+    $cleanStr = $_POST["cleanStr"];
 
     require_once '../dbh.inc.php';
     require_once '../functions.inc.php';
-    echo $dname;
     
     if(checkDname($dname))
     {
@@ -24,7 +25,7 @@ if(isset($_POST["submit"]))
         exit();
     }
 
-    addnew($conn,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice);
+    addnew($conn,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice,$pname,$cleanStr);
 }
 else if(isset($_POST["update"]))
 {
@@ -36,6 +37,9 @@ else if(isset($_POST["update"]))
     $exp = $_POST["exp"];
     $qty = $_POST["qty"];
     $uprice = $_POST["uprice"];
+    $pname = $_POST["pname"];
+    $cleanStr = $_POST["cleanStr"];
+    $iid = $_POST["iid"];
 
     require_once '../dbh.inc.php';
     require_once '../functions.inc.php';
@@ -46,7 +50,7 @@ else if(isset($_POST["update"]))
         exit();
     }
 
-    update($conn,$id,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice);
+    update($conn,$id,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice,$pname,$cleanStr,$iid);
 }
 else{
     header('Location:../../pharmacy/addnew.php');
