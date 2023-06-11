@@ -5,6 +5,7 @@
 
 if(isset($_SESSION["pname"]))
 {
+    $clean = $_SESSION["cleanStr"];
 ?>
 
     <div class="container pt-5 ps-4">
@@ -27,7 +28,7 @@ if(isset($_SESSION["pname"]))
             </thead>
             <tbody>
             <?php
-                $sql = "SELECT * FROM inventory ORDER BY id DESC";
+                $sql = "SELECT * FROM  $clean ORDER BY id DESC";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0){
@@ -44,7 +45,7 @@ if(isset($_SESSION["pname"]))
                             <td><?php echo $row['uprice'] ?></td>
                             <td>
                                 <a href='<?php echo "medifind/pharmacy/update.php?id=$row[id]"?>'><i class="fa-solid fa-pen"></i></a> &nbsp; &nbsp; &nbsp;
-                                <a href='<?php echo "medifind/includes/pharmacy/delete.inc.php?id=$row[id]"?>' onclick="return confirm('Are you sure you want to delete this drug?')"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href='<?php echo "medifind/includes/pharmacy/delete.inc.php?id=$row[id]&clean=$clean&iid=$row[iid]"?>' onclick="return confirm('Are you sure you want to delete this drug?')"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                 <?php

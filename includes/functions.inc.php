@@ -40,9 +40,9 @@ function loginUser($conn,$username,$pwd)
     {
         session_start();
         $_SESSION["id"] = $uidExists["id"];
+        $_SESSION["cleanStr"] = $uidExists["cleanStr"];
         $_SESSION["pname"] = $uidExists["pname"];
         header("Location:../../pharmacy/index.php");
-        // echo $_SESSION['pname'];
         exit();
     }
 }
@@ -103,9 +103,25 @@ function loginAdmin($username,$pwd)
     }
 }
 
-function addnew($conn,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice)
+function addnewInventory($conn,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice,$pname,$last_id,$cleanStr)
 {
-    $sql = "INSERT INTO inventory (dname,manu,sup,ndc,exp,qty,uprice) VALUES (?,?,?,?,?,?,?);";
+    $sql = "INSERT INTO inventory (dname,manu,sup,ndc,exp,qty,uprice,pname,rid,cleanStr) VALUES (?,?,?,?,?,?,?,?,?,?);";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt,$sql)){
+        header("Location:../../pharmacy/addnew.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt,"ssssssssss",$dname,$manu,$sup,$ndc,$exp,$qty,$uprice,$pname,$last_id,$cleanStr);
+    mysqli_stmt_execute($stmt);
+    $lid = mysqli_insert_id($conn);
+    $sql = "UPDATE $cleanStr SET iid = '$lid' WHERE id = '$last_id'";
+    mysqli_query($conn, $sql);
+    mysqli_stmt_close($stmt);
+}
+
+function addnew($conn,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice,$pname,$cleanStr)
+{
+    $sql = "INSERT INTO $cleanStr (dname,manu,sup,ndc,exp,qty,uprice) VALUES (?,?,?,?,?,?,?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt,$sql)){
         header("Location:../../pharmacy/addnew.php?error=stmtfailed");
@@ -113,8 +129,9 @@ function addnew($conn,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice)
     }
     mysqli_stmt_bind_param($stmt,"sssssss",$dname,$manu,$sup,$ndc,$exp,$qty,$uprice);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-    header("Location:.././pharmacy/addnew.php?error=none");
+    $last_id = mysqli_insert_id($conn);
+    addnewInventory($conn,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice,$pname,$last_id,$cleanStr);
+    header("Location:../../pharmacy/addnew.php?error=none");
     exit();
 
 }
@@ -128,17 +145,20 @@ function checkDname($dname)
     return false;    
 }
 
-function update($conn,$id,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice)
+function updateInventory($conn,$iid,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice,$pname,$cleanStr)
 {
-    $sql = "SELECT * FROM inventory WHERE id=$id";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();if(!$row){
-        header("Location: ../../pharmacy/update.php?error=stmtfailed&id=$id");
-        exit;
-    }
-    $sql = "UPDATE inventory SET dname = '$dname', manu = '$manu', sup = '$sup',  ndc = '$ndc', exp = '$exp', qty = '$qty',uprice = '$uprice'
+    $sql = "UPDATE inventory SET dname = '$dname', manu = '$manu', sup = '$sup',  ndc = '$ndc', exp = '$exp', qty = '$qty',uprice = '$uprice', pname = '$pname'
+            WHERE id = '$iid'";
+    mysqli_query($conn, $sql);
+}
+
+function update($conn,$id,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice,$pname,$cleanStr,$iid)
+{
+    $sql = "UPDATE $cleanStr SET dname = '$dname', manu = '$manu', sup = '$sup',  ndc = '$ndc', exp = '$exp', qty = '$qty',uprice = '$uprice'
             WHERE id = '$id'";
     mysqli_query($conn, $sql);
+    updateInventory($conn,$iid,$dname,$manu,$sup,$ndc,$exp,$qty,$uprice,$pname,$cleanStr);    
+    mysqli_close($conn);
     header('Location:../../pharmacy/index.php');
     exit();
 }
@@ -167,9 +187,9 @@ function updatealter0($conn,$id,$s)
     mysqli_query($conn, $sql);
 }
 
-function createRelevent($conn,$plicense)
+function createRelevent($conn,$cleanStr)
 {
-    $sql = "CREATE TABLE $plicense (
+    $sql = "CREATE TABLE $cleanStr (
         id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         dname VARCHAR(200) NOT NULL,
         manu VARCHAR(200) NOT NULL,
@@ -177,7 +197,8 @@ function createRelevent($conn,$plicense)
         ndc VARCHAR(100) NOT NULL,
         exp DATE NOT NULL,
         qty INT(10) NOT NULL,
-        uprice VARCHAR(100) NOT NULL
+        uprice VARCHAR(100) NOT NULL,
+        iid INT(10) NOT NULL
         )";
     mysqli_query($conn, $sql);
 }
@@ -185,7 +206,8 @@ function createRelevent($conn,$plicense)
 function createPham($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$id)
 {
     $uidExists1 = uidExists($conn,$plicense,$plicense);
-    $uidExists2 = uidExists($conn,$email,$email);
+    $uidExists2 = uidExists($conn,$email,$email);    
+    $cleanStr = preg_replace('/[^A-Za-z0-9]/', '', $plicense);
     if(!($uidExists1 === false))
     {
         header("Location:../../admin/verify.php?id=$id&error=againp");
@@ -196,16 +218,16 @@ function createPham($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$id)
         header("Location:../../admin/verify.php?id=$id&error=againe");
         exit();
     }    
-    $sql = "INSERT INTO phamacy (pname,oname,email,address,tel,plicense,pwd) VALUES (?,?,?,?,?,?,?);";
+    $sql = "INSERT INTO phamacy (pname,oname,email,address,tel,plicense,pwd,cleanStr) VALUES (?,?,?,?,?,?,?,?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt,$sql)){
         header("Location:../../admin/verify.php?id=$id&error=stmtfailed");
         exit();
     }
-    mysqli_stmt_bind_param($stmt,"sssssss",$pname,$oname,$email,$address,$tel,$plicense,$pwd);
+    mysqli_stmt_bind_param($stmt,"ssssssss",$pname,$oname,$email,$address,$tel,$plicense,$pwd,$cleanStr);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-    createRelevent($conn,$plicense);
+    mysqli_stmt_close($stmt);    
+    createRelevent($conn,$cleanStr);
     updatealter1($conn,$pname,$oname,$address,$tel,$id,1);
     // header("Location:../../admin/verify.php?id=$id&error=none");
     header("Location:../../admin/index.php");
@@ -222,8 +244,9 @@ function checkqty($qty)
 }
 
 function delRelevent($conn,$plicense)
-{
-    $sql = "DROP TABLE $plicense";
+{    
+    $cleanStr = preg_replace('/[^A-Za-z0-9]/', '', $plicense);
+    $sql = "DROP TABLE $cleanStr";
     mysqli_query($conn, $sql);
     mysqli_close($conn);
 }
