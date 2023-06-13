@@ -5,18 +5,56 @@
 
 ?>
 
-<div class="container pt-5 ps-4">
+<div class="container cd-table-container pt-5 ps-4">
         <h3>MEDICINES</h3>
 
         <div class="input-group text-nowrap" id="search-box" style="display:none;width:40%;margin: auto;">
             <div class="form-outline">
-                <input type="search" type="search"class="form-control" />
+                <!-- <input type="search" class="form-control" /> -->                
+                <input type="search" class="cd-search table-filter form-control" data-table="order-table" placeholder="Item to filter.." />
                 <label class="form-label">Search</label>
             </div>
             <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>            
         </div>
 
-        <table class="table table-hover text-center text-nowrap mt-5" id="vd">
+        <script>
+            (function() {
+                'use strict';
+                var TableFilter = (function() {
+                    var Arr = Array.prototype;
+                    var input;
+                
+                    function onInputEvent(e) {
+                        input = e.target;
+                        var table1 = document.getElementsByClassName(input.getAttribute('data-table'));
+                        Arr.forEach.call(table1, function(table) {
+                            Arr.forEach.call(table.tBodies, function(tbody) {
+                                Arr.forEach.call(tbody.rows, filter);
+                            });
+                        });
+                    }
+                    function filter(row) {
+                        var text = row.textContent.toLowerCase();
+                        //console.log(text);
+                        var val = input.value.toLowerCase();
+                        //console.log(val);
+                        row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+                    }
+                return {
+                    init: function() {
+                        var inputs = document.getElementsByClassName('table-filter');
+                        Arr.forEach.call(inputs, function(input) {
+                            input.oninput = onInputEvent;
+                        });
+                    }
+                };
+                
+                })();                
+                TableFilter.init(); 
+            })();
+        </script>
+
+        <table class="table cd-table order-table  table-hover text-center text-nowrap mt-5" id="vd">
             <thead>
                 <tr>
                     <th><b>Drug Name</b></th>
@@ -47,7 +85,7 @@
             </tbody>
         </table>
 
-        <table class="table table-hover text-center text-nowrap mt-5" id="va" style="display:none;">
+        <table class="table cd-table order-table table-hover text-center text-nowrap mt-5" id="va" style="display:none;">
             <thead>
                 <tr>
                     <th><b>Pharmacy Name</b></th>
