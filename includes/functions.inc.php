@@ -229,7 +229,6 @@ function createPham($conn,$pname,$oname,$email,$address,$tel,$plicense,$pwd,$id)
     mysqli_stmt_close($stmt);    
     createRelevent($conn,$cleanStr);
     updatealter1($conn,$pname,$oname,$address,$tel,$id,1);
-    // header("Location:../../admin/verify.php?id=$id&error=none");
     header("Location:../../admin/index.php");
     exit();
 }
